@@ -54,7 +54,7 @@ export default function RoleSelectionPage() {
       if (!res.ok) throw new Error("Failed to set role.");
 
       // Redirect or do something next
-      router.push("/"); // or `/dashboard`, etc.
+      router.push("/dashboard"); // or `/dashboard`, etc.
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Something went wrong");
