@@ -20,7 +20,7 @@ const Navbar04Page = () => {
             >
               Sign In
             </Button>
-            <Button className="rounded-full">Get Started</Button>
+            <Button className="rounded-full">Sign Up</Button>
 
             {/* Mobile Menu */}
             <div className="md:hidden">
