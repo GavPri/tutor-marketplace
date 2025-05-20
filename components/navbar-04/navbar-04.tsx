@@ -2,11 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
+import Link from "next/link";
 
 const Navbar04Page = () => {
   return (
-    
-      <nav className="fixed top-6 inset-x-4 h-16 bg-background border max-w-screen-xl mx-auto rounded-full">
+    <div className="fixed top-0 inset-x-4 z-50 backdrop-blur-lg bg-transparent h-24 w-screen">
+      <nav className="fixed top-6 inset-x-4 h-16 bg-background border max-w-screen-xl mx-auto rounded-full z-50">
         <div className="h-full flex items-center justify-between mx-auto px-4">
           <Logo />
 
@@ -20,7 +21,9 @@ const Navbar04Page = () => {
             >
               Sign In
             </Button>
-            <Button className="rounded-full">Sign Up</Button>
+            <Link href={"/sign-up"}>
+              <Button className="rounded-full">Sign Up</Button>
+            </Link>
 
             {/* Mobile Menu */}
             <div className="md:hidden">
@@ -29,7 +32,7 @@ const Navbar04Page = () => {
           </div>
         </div>
       </nav>
-    
+    </div>
   );
 };
 
