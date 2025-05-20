@@ -1,12 +1,23 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+// middleware.ts (at project root)
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher(["/select-role"]);
+
+export default clerkMiddleware(async (auth, req) => {
+  const { userId } = await auth(); // Await the auth promise
+
+  if (!userId && isProtectedRoute(req)) {
+    const signInUrl = new URL("/sign-in", req.url);
+    return NextResponse.redirect(signInUrl);
+  }
+
+  // If no redirect is needed, return nothing to let the request proceed
+});
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
     "/(api|trpc)(.*)",
   ],
 };
